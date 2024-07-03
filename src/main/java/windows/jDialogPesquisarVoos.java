@@ -1,6 +1,7 @@
 package windows;
 
 import control.GerenciaDeInterface;
+import domain.Estado;
 import domain.Regiao;
 
 public class jDialogPesquisarVoos extends javax.swing.JDialog {
@@ -60,10 +61,6 @@ public class jDialogPesquisarVoos extends javax.swing.JDialog {
         jLabel6.setText("Estado");
 
         jLabel7.setText("Cidade");
-
-        comboEstDest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        comboCidDest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -185,10 +182,6 @@ public class jDialogPesquisarVoos extends javax.swing.JDialog {
 
         jLabel4.setText("Cidade");
 
-        comboEstOrigem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        comboCidOrigem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -271,6 +264,13 @@ public class jDialogPesquisarVoos extends javax.swing.JDialog {
         
         gerI.carregarComboBox(combRegOrigem, this, Regiao.class);
         gerI.carregarComboBox(comboRegDest, this, Regiao.class);
+        
+        gerI.carregarComboBox(comboEstOrigem, this, Estado.class);
+        gerI.carregarComboBox(comboEstDest, this, Estado.class);
+
+        gerI.carregarComboBox(comboCidOrigem, this, String.class);
+        gerI.carregarComboBox(comboCidDest, this, String.class);
+        
     }//GEN-LAST:event_formWindowOpened
 
 

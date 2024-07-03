@@ -3,6 +3,7 @@ package control;
 import dao.ClienteDao;
 import dao.ConexaoHibernate;
 import dao.GenericDao;
+import dao.VooDao;
 import domain.*;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.hibernate.HibernateException;
 public class GerenciaDeDados {
     private GenericDao genDao;
     private ClienteDao cliDao;
+    private VooDao vooDao;
 
     GenericDao dao = new GenericDao();
     
@@ -107,6 +109,10 @@ public class GerenciaDeDados {
     
     public Cliente pesquisarClienteReserva(String pesq){
         return cliDao.pesquisarClienteReserva(pesq);
+    }
+    
+    public Voos pesquisarVooCliente(String pesq){
+        return vooDao.pesquisarVooCliente(pesq);
     }
 }
 

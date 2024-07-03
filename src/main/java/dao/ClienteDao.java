@@ -1,6 +1,7 @@
 package dao;
 
 import domain.Cliente;
+import domain.Voos;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Expression;
@@ -85,4 +86,5 @@ public class ClienteDao extends GenericDao {
     public Cliente pesquisarClienteReserva(String pesq){
         return pesquisar(1, pesq);
     }
+    
 }
