@@ -42,6 +42,12 @@ public class Cidade implements Serializable{
         return idCidade;
     }
 
+    @Override
+    public String toString() {
+        return nomeCidade;
+    }
+
+    
     public void setIdCidade(int idCidade) {
         this.idCidade = idCidade;
     }

@@ -1,5 +1,6 @@
 package domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -49,7 +50,7 @@ public class Cliente implements Serializable{
     @Column ( length = 15)
     private String telefone;
 
-    @ManyToOne ( fetch = FetchType.EAGER )
+    @ManyToOne ( fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn ( name="idEndereco" )
     private Endereco endereco;
     

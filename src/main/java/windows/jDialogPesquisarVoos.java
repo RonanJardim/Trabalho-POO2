@@ -1,18 +1,17 @@
 package windows;
 
 import control.GerenciaDeInterface;
+import domain.Cidade;
 import domain.Estado;
 import domain.Regiao;
 
 public class jDialogPesquisarVoos extends javax.swing.JDialog {
 
-    private GerenciaDeInterface gerI;
     
-    public jDialogPesquisarVoos(java.awt.Frame parent, boolean modal, GerenciaDeInterface gerI) {   
+    public jDialogPesquisarVoos(java.awt.Frame parent, boolean modal) {   
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        this.gerI =gerI;
     }
 
     @SuppressWarnings("unchecked")
@@ -26,31 +25,22 @@ public class jDialogPesquisarVoos extends javax.swing.JDialog {
         comboRegDest = new javax.swing.JComboBox<>();
         comboEstDest = new javax.swing.JComboBox<>();
         comboCidDest = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        txtValor = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtAeroporto = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txtEmpresa = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        txtModelAeronave = new javax.swing.JTextField();
-        comboHorario = new javax.swing.JComboBox<>();
         btnVoltar = new javax.swing.JButton();
-        btnReserva = new javax.swing.JButton();
+        btnPesquisarVoos = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        combRegOrigem = new javax.swing.JComboBox<>();
+        comboRegOrigem = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         comboEstOrigem = new javax.swing.JComboBox<>();
         comboCidOrigem = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
 
@@ -61,6 +51,21 @@ public class jDialogPesquisarVoos extends javax.swing.JDialog {
         jLabel6.setText("Estado");
 
         jLabel7.setText("Cidade");
+
+        comboRegDest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboRegDestMouseClicked(evt);
+            }
+        });
+
+        comboEstDest.setActionCommand("");
+        comboEstDest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboEstDestMouseClicked(evt);
+            }
+        });
+
+        comboCidDest.setActionCommand("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -101,86 +106,42 @@ public class jDialogPesquisarVoos extends javax.swing.JDialog {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Voos Disponiveis"));
-
-        jLabel2.setText("Valor");
-
-        jLabel8.setText("Horário");
-
-        jLabel9.setText("Aeroporto");
-
-        jLabel10.setText("Empresa");
-
-        jLabel11.setText("Mode. Aeronave");
-
-        comboHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtValor)
-                    .addComponent(txtAeroporto)
-                    .addComponent(comboHorario, 0, 96, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtEmpresa))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtModelAeronave, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel11)
-                    .addComponent(txtModelAeronave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtAeroporto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
-        btnReserva.setText("Reservar");
+        btnPesquisarVoos.setText("Pesquisar");
+        btnPesquisarVoos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarVoosActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Origem"));
 
         jLabel1.setText("Região");
 
-        combRegOrigem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combRegOrigemActionPerformed(evt);
+        comboRegOrigem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboRegOrigemMouseClicked(evt);
             }
         });
 
         jLabel3.setText("Estado");
 
         jLabel4.setText("Cidade");
+
+        comboEstOrigem.setActionCommand("");
+        comboEstOrigem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboEstOrigemMouseClicked(evt);
+            }
+        });
+
+        comboCidOrigem.setActionCommand("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,7 +153,7 @@ public class jDialogPesquisarVoos extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(combRegOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboRegOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
@@ -201,7 +162,7 @@ public class jDialogPesquisarVoos extends javax.swing.JDialog {
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(comboCidOrigem, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +170,7 @@ public class jDialogPesquisarVoos extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(combRegOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboRegOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -229,12 +190,11 @@ public class jDialogPesquisarVoos extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
+                .addGap(136, 136, 136)
                 .addComponent(btnVoltar)
                 .addGap(18, 18, 18)
-                .addComponent(btnReserva)
+                .addComponent(btnPesquisarVoos)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -243,64 +203,97 @@ public class jDialogPesquisarVoos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVoltar)
-                    .addComponent(btnReserva))
-                .addContainerGap())
+                    .addComponent(btnPesquisarVoos))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combRegOrigemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combRegOrigemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combRegOrigemActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        comboRegOrigem.setSelectedIndex(0);
+        comboRegDest.setSelectedIndex(0);
+        
+        comboCidDest.removeAllItems();
+        comboCidOrigem.removeAllItems();
+        
+        comboEstDest.removeAllItems();
+        comboEstOrigem.removeAllItems();
+        
+       
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void btnPesquisarVoosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarVoosActionPerformed
+        GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
+        Cidade cidOrigem = (Cidade) this.comboCidOrigem.getSelectedItem();
+        Cidade cidDestino = (Cidade) this.comboCidDest.getSelectedItem();
+        
+        gerI.getGerCid().setCidOrigem(cidOrigem);
+        gerI.getGerCid().setCidDestino(cidDestino);
+        
+        if((cidOrigem != null) && (cidDestino != null)){
+            gerI.abrirVoosDisponiveis();
+            return;
+        }
+        System.out.println("n");
+    }//GEN-LAST:event_btnPesquisarVoosActionPerformed
+
+    private void comboEstOrigemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEstOrigemMouseClicked
         GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
         
-        gerI.carregarComboBox(combRegOrigem, this, Regiao.class);
-        gerI.carregarComboBox(comboRegDest, this, Regiao.class);
-        
-        gerI.carregarComboBox(comboEstOrigem, this, Estado.class);
-        gerI.carregarComboBox(comboEstDest, this, Estado.class);
+        Estado estado = (Estado) this.comboEstOrigem.getSelectedItem();
+        gerI.carregarComboBox(comboCidOrigem, this, Cidade.class, estado, "estado");
+    }//GEN-LAST:event_comboEstOrigemMouseClicked
 
-        gerI.carregarComboBox(comboCidOrigem, this, String.class);
-        gerI.carregarComboBox(comboCidDest, this, String.class);
+    private void comboEstDestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEstDestMouseClicked
+        GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
         
-    }//GEN-LAST:event_formWindowOpened
+        Estado estado = (Estado) this.comboEstDest.getSelectedItem();
+        gerI.carregarComboBox(comboCidDest, this, Cidade.class, estado, "estado");
+    }//GEN-LAST:event_comboEstDestMouseClicked
+
+    private void comboRegOrigemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboRegOrigemMouseClicked
+        GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
+        
+        Regiao regiao = (Regiao) this.comboRegOrigem.getSelectedItem();
+        gerI.carregarComboBox(comboEstOrigem, this, Estado.class, regiao, "regiao");
+    }//GEN-LAST:event_comboRegOrigemMouseClicked
+
+    private void comboRegDestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboRegDestMouseClicked
+        GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
+        
+        Regiao regiao = (Regiao) this.comboRegDest.getSelectedItem();
+        gerI.carregarComboBox(comboEstDest, this, Estado.class, regiao, "regiao");
+    }//GEN-LAST:event_comboRegDestMouseClicked
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
+        
+        gerI.carregarComboBox(comboRegOrigem, this, Regiao.class);
+        gerI.carregarComboBox(comboRegDest, this, Regiao.class);
+    }//GEN-LAST:event_formWindowGainedFocus
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnReserva;
+    private javax.swing.JButton btnPesquisarVoos;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JComboBox<String> combRegOrigem;
     private javax.swing.JComboBox<String> comboCidDest;
     private javax.swing.JComboBox<String> comboCidOrigem;
     private javax.swing.JComboBox<String> comboEstDest;
     private javax.swing.JComboBox<String> comboEstOrigem;
-    private javax.swing.JComboBox<String> comboHorario;
     private javax.swing.JComboBox<String> comboRegDest;
+    private javax.swing.JComboBox<String> comboRegOrigem;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txtAeroporto;
-    private javax.swing.JTextField txtEmpresa;
-    private javax.swing.JTextField txtModelAeronave;
-    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

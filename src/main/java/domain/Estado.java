@@ -44,6 +44,12 @@ public class Estado implements Serializable{
         this.idEstado = idEstado;
     }
 
+    @Override
+    public String toString() {
+        return  nomeEstado ;
+    }
+
+    
     public String getNomeEstado() {
         return nomeEstado;
     }

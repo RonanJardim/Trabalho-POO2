@@ -15,14 +15,14 @@ public class Check_in implements Serializable{
     @GeneratedValue ( strategy = GenerationType.IDENTITY)
     private int idCheck_in;
     
-    @Column(nullable = true)
-    private int codVoo;
+//    @Column(nullable = true)
+//    private int codVoo;
 
     @OneToOne(mappedBy = "check_in", fetch = FetchType.LAZY)
     private Reserva reserva;
 
     public Check_in(int codVoo, Reserva reserva) {
-        this.codVoo = codVoo;
+        //this.codVoo = codVoo;
         this.reserva = reserva;
     }
     
@@ -37,13 +37,13 @@ public class Check_in implements Serializable{
         this.idCheck_in = idCheck_in;
     }
 
-    public int getCodVoo() {
-        return codVoo;
-    }
-
-    public void setCodVoo(int codVoo) {
-        this.codVoo = codVoo;
-    }
+//    public int getCodVoo() {
+//        return codVoo;
+//    }
+//
+//    public void setCodVoo(int codVoo) {
+//        this.codVoo = codVoo;
+//    }
 
     public Reserva getReserva() {
         return reserva;
@@ -52,6 +52,5 @@ public class Check_in implements Serializable{
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
     }
-    
     
 }

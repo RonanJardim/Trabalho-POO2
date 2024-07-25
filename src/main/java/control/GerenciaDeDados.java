@@ -57,12 +57,13 @@ public class GerenciaDeDados {
         return empresa;
     }
 
-    public Aviao inserirAviao(String modelo, Date anoFabric, Date anoModel, int numAviao) throws HibernateException{
+    public Aviao inserirAviao(String modelo, Empresa empresa ,Date anoFabric, Date anoModel, int numAviao) throws HibernateException{
         Aviao aviao = new Aviao();
         aviao.setModelAviao(modelo);
         aviao.setAnoFabric(anoFabric);
         aviao.setAnoModel(anoModel);
         aviao.setNumAviao(numAviao);
+        aviao.setEmpresa(empresa);
         genDao.inserir(aviao);
         
         return aviao;
@@ -90,9 +91,9 @@ public class GerenciaDeDados {
         return reserva;
     }
 
-    public Check_in inserirCheckin(int codVoo, Reserva reserva) throws HibernateException{
+    public Check_in inserirCheckin(Reserva reserva) throws HibernateException{
         Check_in checkin = new Check_in();
-        checkin.setCodVoo(codVoo);
+        //checkin.setCodVoo(codVoo);
         checkin.setReserva(reserva);
         genDao.inserir(checkin);
 
@@ -101,6 +102,10 @@ public class GerenciaDeDados {
     
     public List list(Class classe){
         return genDao.listar(classe);
+    }
+    
+    public List listById(Class classe, Object id, String nome){
+        return genDao.listById(classe, id, nome);
     }
     
     public Cliente buscarCliente(String cpf){
@@ -114,5 +119,7 @@ public class GerenciaDeDados {
     public Voos pesquisarVooCliente(String pesq){
         return vooDao.pesquisarVooCliente(pesq);
     }
+
+    
 }
 

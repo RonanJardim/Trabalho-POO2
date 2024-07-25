@@ -1,11 +1,15 @@
 package dao;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import java.util.ArrayList;
 
 public class GenericDao {
 
@@ -101,20 +105,52 @@ public class GenericDao {
         }
         return lista;
     }
+
     
+    public <T> List<T> listById(Class<T> classe, Object argumento, String nome ) throws HibernateException {
+        
+        if (argumento == null) {
+            throw new IllegalArgumentException("O argumento para a consulta não pode ser nulo");
+        }
+        
+        Session sessao = null;
+        List<T> resultado = new ArrayList<>();
+        
+        try {
+            sessao = ConexaoHibernate.getSessionFactory().openSession();
+            CriteriaBuilder builder = sessao.getCriteriaBuilder();
+            CriteriaQuery<T> consulta = builder.createQuery(classe);
+            Root<T> root = consulta.from(classe);
+
+            // Ajustando o predicado para filtrar pelo campo que referencia o ID da região
+            Predicate predicado = builder.equal(root.get(nome), argumento); // Substitua "regiaoId" pelo nome correto do campo
+            consulta.where(predicado);
+
+            resultado = sessao.createQuery(consulta).getResultList();
+        } catch (HibernateException erro) {
+            throw new HibernateException(erro);
+        } finally {
+            if (sessao != null) {
+                sessao.close();
+            }
+        }
+
+        return resultado;
+    }
+
     public Object get(Class classe, int id) throws HibernateException {
         Session sessao = null;
         Object objReturn = null;
-        try   {
-          sessao = ConexaoHibernate.getSessionFactory().openSession();
-          sessao.getTransaction().begin();
+        try {
+            sessao = ConexaoHibernate.getSessionFactory().openSession();
+            sessao.getTransaction().begin();
 
-          objReturn = sessao.get(classe, id );
+            objReturn = sessao.get(classe, id);
 
-          sessao.getTransaction().commit();
-          sessao.close();
-        } catch ( HibernateException ex) {
-            if ( sessao != null) {
+            sessao.getTransaction().commit();
+            sessao.close();
+        } catch (HibernateException ex) {
+            if (sessao != null) {
                 sessao.getTransaction().rollback();
                 sessao.close();
             }
@@ -122,6 +158,26 @@ public class GenericDao {
         }
         return objReturn;
     }
-    
-    
+
+    public Object get(Class classe, String id) throws HibernateException {
+        Session sessao = null;
+        Object objReturn = null;
+        try {
+            sessao = ConexaoHibernate.getSessionFactory().openSession();
+            sessao.getTransaction().begin();
+
+            objReturn = sessao.get(classe, id);
+
+            sessao.getTransaction().commit();
+            sessao.close();
+        } catch (HibernateException ex) {
+            if (sessao != null) {
+                sessao.getTransaction().rollback();
+                sessao.close();
+            }
+            throw new HibernateException(ex);
+        }
+        return objReturn;
+    }
+
 }

@@ -13,13 +13,11 @@ import java.util.logging.Logger;
 
 public class jDialogCadCliente extends javax.swing.JDialog {
 
-    private GerenciaDeInterface gerI;
 
-    public jDialogCadCliente(java.awt.Frame parent, boolean modal, GerenciaDeInterface gerI) {
+    public jDialogCadCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        this.gerI = gerI;
     }
     
     @SuppressWarnings("unchecked")

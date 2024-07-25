@@ -92,5 +92,13 @@ public class Aviao implements Serializable{
     public void setNumAviao(int numAviao) {
         this.numAviao = numAviao;
     }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
     
 }

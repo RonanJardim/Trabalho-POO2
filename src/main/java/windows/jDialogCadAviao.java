@@ -10,14 +10,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class jDialogCadAviao extends javax.swing.JDialog {
-
-    private  GerenciaDeInterface gerI;
     
-    public jDialogCadAviao(java.awt.Frame parent, boolean modal, GerenciaDeInterface gerI) {
+    public jDialogCadAviao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        this.gerI = gerI;
     }
 
     @SuppressWarnings("unchecked")
@@ -303,7 +300,7 @@ public class jDialogCadAviao extends javax.swing.JDialog {
             dtFundacao = FuncoesUteis.strToDate(dtFund);
             
             Empresa empresa = gerI.getGerenciadorDominio().inserirEmpresa(nomeEmpresa, cnpj, telefone, rua, cidade, bairro, estado, dtFundacao);
-            Aviao aviao = gerI.getGerenciadorDominio().inserirAviao(modelo, anoFabric, anoModel, numAviao);
+            Aviao aviao = gerI.getGerenciadorDominio().inserirAviao(modelo,empresa ,anoFabric, anoModel, numAviao);
             
         } catch (ParseException ex) {
             ex.printStackTrace();

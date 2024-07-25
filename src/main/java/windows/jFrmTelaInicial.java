@@ -2,14 +2,13 @@ package windows;
 
 import control.GerenciaDeInterface;
 
-
 public class jFrmTelaInicial extends javax.swing.JFrame {
 
     private GerenciaDeInterface gerI;
-    
-   public jFrmTelaInicial(GerenciaDeInterface newGerI) {
-       initComponents();
-       setLocationRelativeTo(null);
+
+    public jFrmTelaInicial(GerenciaDeInterface newGerI) {
+        initComponents();
+        setLocationRelativeTo(null);
         gerI = newGerI;
     }
 
@@ -133,7 +132,6 @@ public class jFrmTelaInicial extends javax.swing.JFrame {
         gerI.abrirJanelaCadAviao();
     }//GEN-LAST:event_menuItemCadAviaoActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

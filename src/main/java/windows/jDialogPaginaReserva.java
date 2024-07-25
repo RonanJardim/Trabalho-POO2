@@ -15,13 +15,11 @@ import domain.Voos;
 
 public class jDialogPaginaReserva extends javax.swing.JDialog {
 
-    private GerenciaDeInterface gerI;
     
-    public jDialogPaginaReserva(java.awt.Frame parent, boolean modal, GerenciaDeInterface gerI) {
+    public jDialogPaginaReserva(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        this.gerI = gerI;
         
     }
 
