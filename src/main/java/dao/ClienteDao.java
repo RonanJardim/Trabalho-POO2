@@ -89,4 +89,7 @@ public class ClienteDao extends GenericDao {
         return pesquisar(1, pesq);
     }
 
+    public void atualizarCliente(Cliente cliente) {
+        alterar(cliente);
+    }
 }

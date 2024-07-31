@@ -22,13 +22,13 @@ public class jDialogListar extends javax.swing.JDialog {
     }
 
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         comboTipoPesq = new javax.swing.JComboBox<>();
         btnPesquisar = new javax.swing.JButton();
-        txtPesq = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -58,12 +58,10 @@ public class jDialogListar extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(comboTipoPesq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtPesq)
-                .addGap(18, 18, 18)
+                .addComponent(comboTipoPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnPesquisar)
-                .addContainerGap())
+                .addGap(63, 63, 63))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,8 +69,7 @@ public class jDialogListar extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboTipoPesq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisar)
-                    .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPesquisar))
                 .addContainerGap())
         );
 
@@ -153,11 +150,11 @@ public class jDialogListar extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboTipoPesqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoPesqActionPerformed
+    private void comboTipoPesqActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_comboTipoPesqActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboTipoPesqActionPerformed
+    }// GEN-LAST:event_comboTipoPesqActionPerformed
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnPesquisarActionPerformed
         GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
 
         String tipoPesq = comboTipoPesq.getSelectedItem().toString();
@@ -182,16 +179,18 @@ public class jDialogListar extends javax.swing.JDialog {
                 gerI.carregarTabela(jTable1, empTableModel);
                 break;
             default:
-                JOptionPane.showMessageDialog(this, "Tipo de pesquisa desconhecido.", "Erro", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Tipo de pesquisa desconhecido.", "Erro",
+                        JOptionPane.ERROR_MESSAGE);
                 break;
         }
 
-    }//GEN-LAST:event_btnPesquisarActionPerformed
+    }// GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnExcluirActionPerformed
         int linha = jTable1.getSelectedRow();
         if (linha >= 0) {
-            if (JOptionPane.showConfirmDialog(this, "Deseja realmente excluir?", "Excluir item", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if (JOptionPane.showConfirmDialog(this, "Deseja realmente excluir?", "Excluir item",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 linha = jTable1.convertRowIndexToModel(linha);
                 try {
                     // Excluir do banco de dados e da tabela
@@ -215,87 +214,61 @@ public class jDialogListar extends javax.swing.JDialog {
                         model.remover(linha);
                     }
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Erro ao excluir o item: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Erro ao excluir o item: " + e.getMessage(), "Erro",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnExcluirActionPerformed
+    }// GEN-LAST:event_btnExcluirActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCancelarActionPerformed
+        GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
 
-    }//GEN-LAST:event_btnCancelarActionPerformed
+        jTable1.setModel(new DefaultTableModel());
+        dispose();
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-//        int linha = jTable1.getSelectedRow();
-//        if (linha >= 0) {
-//            linha = jTable1.convertRowIndexToModel(linha);
-//
-//            GerenciaDeDados gerenciaDeDados = new GerenciaDeDados();
-//
-//            if (jTable1.getModel() instanceof ClienteAbstractTableModel) {
-//                ClienteAbstractTableModel model = (ClienteAbstractTableModel) jTable1.getModel();
-//                Cliente cliente = model.getCliente(linha);
-//                // Carregar os valores atuais nos campos de edição
-//                txtNome.setText(cliente.getNome());
-//                txtEndereco.setText(cliente.getEndereco().getEndereco());
-//                txtTelefone.setText(cliente.getTelefone());
-//
-//                // Exibir diálogo para edição ou campos de edição
-//                int result = JOptionPane.showConfirmDialog(this, new Object[]{txtNome, txtEndereco, txtTelefone}, "Editar Cliente", JOptionPane.OK_CANCEL_OPTION);
-//                if (result == JOptionPane.OK_OPTION) {
-//                    // Atualizar cliente com os novos valores dos campos de texto
-//                    cliente.setNome(txtNome.getText());
-//                    cliente.getEndereco().setEndereco(txtEndereco.getText());
-//                    cliente.setTelefone(txtTelefone.getText());
-//                    // Atualizar cliente no banco de dados
-//                    gerenciaDeDados.atualizarCliente(cliente);
-//                    // Atualizar a tabela
-//                    model.fireTableRowsUpdated(linha, linha);
-//                }
-//            } else if (jTable1.getModel() instanceof ChekinAbstractTableModel) {
-//                ChekinAbstractTableModel model = (ChekinAbstractTableModel) jTable1.getModel();
-//                Check_in checkIn = model.getChekin(linha);
-//                // Carregar os valores atuais nos campos de edição
-//                txtNome.setText(checkIn.getReserva().getReserva()); // Exemplo
-//
-//                // Exibir diálogo para edição ou campos de edição
-//                int result = JOptionPane.showConfirmDialog(this, new Object[]{txtNome}, "Editar Check-in", JOptionPane.OK_CANCEL_OPTION);
-//                if (result == JOptionPane.OK_OPTION) {
-//                    // Atualizar check-in com os novos valores dos campos de texto
-//                    checkIn.getReserva().setReserva(txtNome.getText()); // Exemplo
-//                    // Atualizar check-in no banco de dados
-//                    gerenciaDeDados.atualizarCheckin(checkIn);
-//                    // Atualizar a tabela
-//                    model.fireTableRowsUpdated(linha, linha);
-//                }
-//            } else if (jTable1.getModel() instanceof EmpresaAbstractTableModel) {
-//                EmpresaAbstractTableModel model = (EmpresaAbstractTableModel) jTable1.getModel();
-//                Empresa empresa = model.getEmpresa(linha);
-//                // Carregar os valores atuais nos campos de edição
-//                txtNome.setText(empresa.getNomeEmpresa());
-//                txtEndereco.setText(empresa.getEndereco().getEndereco());
-//                txtTelefone.setText(empresa.getTelefone());
-//
-//                // Exibir diálogo para edição ou campos de edição
-//                int result = JOptionPane.showConfirmDialog(this, new Object[]{txtNome, txtEndereco, txtTelefone}, "Editar Empresa", JOptionPane.OK_CANCEL_OPTION);
-//                if (result == JOptionPane.OK_OPTION) {
-//                    // Atualizar empresa com os novos valores dos campos de texto
-//                    empresa.setNomeEmpresa(txtNome.getText());
-//                    empresa.getEndereco().setEndereco(txtEndereco.getText());
-//                    empresa.setTelefone(txtTelefone.getText());
-//                    // Atualizar empresa no banco de dados
-//                    gerenciaDeDados.atualizarEmpresa(empresa);
-//                    // Atualizar a tabela
-//                    model.fireTableRowsUpdated(linha, linha);
-//                }
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela.", "Erro", JOptionPane.ERROR_MESSAGE);
-//        }
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }// GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEditarActionPerformed
+        GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
+
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow >= 0) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            Object rowData = model.getDataVector().elementAt(selectedRow);
+
+            String tipoPesq = comboTipoPesq.getSelectedItem().toString();
+
+            switch (tipoPesq) {
+                case "Clientes":
+                    Cliente Cliente = new Cliente();
+                    Cliente.setCpf((String) rowData);
+                    Cliente = gerI.getGerenciadorDominio().buscarCliente(Cliente.getCpf());
+                    gerI.getGerenciadorDominio().atualizarCliente(Cliente);
+                    break;
+
+                case "Check-in":
+                    JOptionPane.showMessageDialog(this, "Não é possivel alterar um Check-in", "Erro",
+                            JOptionPane.ERROR_MESSAGE);
+                    break;
+
+                case "Empresas":
+                    Empresa Empresa = new Empresa();
+                    Empresa.setCnpj((String) rowData);
+                    Empresa = gerI.getGerenciadorDominio().pesquisarCNPJ(Empresa.getCnpj());
+                    gerI.getGerenciadorDominio().atualizarEmpresa(Empresa);
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // GEN-LAST:event_btnEditarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -307,6 +280,5 @@ public class jDialogListar extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtPesq;
     // End of variables declaration//GEN-END:variables
 }

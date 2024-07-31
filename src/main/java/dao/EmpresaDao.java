@@ -70,4 +70,8 @@ public class EmpresaDao extends GenericDao {
     public List<Empresa> listarEmpresas() {
         return listar(Empresa.class);
     }
+
+    public void atualizarEmpresa(Empresa empresa) {
+        alterar(empresa);
+    }
 }

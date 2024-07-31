@@ -26,7 +26,7 @@ public class ClienteAbstractTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int column) {
-        String nomesColunas[] = { "Nome", "Dt. Nasc", "Celular", "Endereço", "Cidade" };
+        String nomesColunas[] = { "Nome", "Dt. Nasc", "Celular", "Estado", "Cidade" };
         return nomesColunas[column];
     }
 
@@ -39,13 +39,13 @@ public class ClienteAbstractTableModel extends AbstractTableModel {
             case 0:
                 return item.getNome();
             case 1:
-                return item.getEndereco().getBairro();
-            case 2:
-                return item.getEndereco().getCidade();
-            case 3:
                 return item.getDtNasc();
-            case 4:
+            case 2:
                 return item.getTelefone();
+            case 3:
+                return item.getEndereco().getEstado();
+            case 4:
+                return item.getEndereco().getCidade();
             default:
                 
                 throw new IllegalArgumentException("Invalid column index: " + columnIndex);

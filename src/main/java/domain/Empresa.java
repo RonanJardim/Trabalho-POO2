@@ -38,7 +38,7 @@ public class Empresa implements Serializable {
     @Column
     private Date dtFundacao;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "empresa")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "empresa")
     private List<Endereco> endereco = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)

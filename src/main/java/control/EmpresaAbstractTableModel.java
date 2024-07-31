@@ -21,7 +21,7 @@ public class EmpresaAbstractTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int column) {
-        String nomesColunas[] = { "ID", "Nome", "Endereço", "Telefone" };
+        String nomesColunas[] = { "ID", "Nome", "CNPJ", "Telefone" };
         return nomesColunas[column];
     }
 
@@ -34,7 +34,7 @@ public class EmpresaAbstractTableModel extends AbstractTableModel {
             case 1:
                 return empresa.getNomeEmpresa();
             case 2:
-                return empresa.getEndereco();
+                return empresa.getCnpj();
             case 3:
                 return empresa.getTelefone();
             default:
