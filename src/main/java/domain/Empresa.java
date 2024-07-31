@@ -14,6 +14,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,12 +47,11 @@ public class Empresa implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "empresa")
     private List<Aviao> avioes = new ArrayList<>();
 
-    public Empresa(String nomeEmpresa, String cnpj, String telefone, Date dtFundacao, Endereco endereco) {
+    public Empresa(String nomeEmpresa, String cnpj, String telefone, Date dtFundacao) {
         this.nomeEmpresa = nomeEmpresa;
         this.cnpj = cnpj;
         this.telefone = telefone;
         this.dtFundacao = dtFundacao;
-        this.endereco.add(endereco);
     }
 
     public Empresa() {}
@@ -120,6 +120,13 @@ public class Empresa implements Serializable {
     public void setAvioes(List<Aviao> avioes) {
         this.avioes = avioes;
     }
+
+    @Override
+    public String toString() {
+        return nomeEmpresa;
+    }
     
-    
+    public Object[] toArray() throws ParseException {
+        return new Object[] { this, this.getCnpj(), this.getNomeEmpresa(), this.getTelefone(), this.getDtFundacao()};
+    }
 }

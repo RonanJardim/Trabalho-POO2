@@ -14,7 +14,8 @@ import domain.Reserva;
 import domain.Voos;
 
 public class jDialogPaginaReserva extends javax.swing.JDialog {
-
+    
+    private Cliente cliente;
     
     public jDialogPaginaReserva(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -184,6 +185,11 @@ public class jDialogPaginaReserva extends javax.swing.JDialog {
         );
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -277,11 +283,10 @@ public class jDialogPaginaReserva extends javax.swing.JDialog {
     private void btnPesqClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqClienteActionPerformed
         
         GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
-        Cliente cliente;
         
         String cpf = this.txtPesqCPF.getText();
         
-        cliente = gerI.getGerenciadorDominio().pesquisarClienteReserva(cpf);
+        cliente = gerI.getGerenciadorDominio().buscarCliente(cpf);
         System.out.println(cliente.getEndereco().getCidade());
         
         this.txtNome.setText(cliente.getNome());
@@ -295,33 +300,52 @@ public class jDialogPaginaReserva extends javax.swing.JDialog {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
-        String txtDtNasc = this.txtDtNasc.getText();
+//        String txtDtNasc = this.txtDtNasc.getText();
+//        
+//        Cliente cliente = new Cliente(); // Create a new instance of Cliente
+//        Voos voo = null;
+//
+//        cliente.setNome(this.txtNome.getText());
+//        cliente.setCpf(this.txtCPF.getText());
+//        cliente.setTelefone(this.txtTelefone.getText());
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        
+//        Date dtNasc;
+//        
+//        try {
+//            dtNasc = (Date) FuncoesUteis.strToDate(txtDtNasc);
+//            Cliente cli = gerI.getGerenciadorDominio().inserirCliente(cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getTelefone(), cliente.getEndereco().getRua(), cliente.getEndereco().getCidade(), cliente.getEndereco().getBairro(), cliente.getEndereco().getEstado(), cliente.getSexo(), dtNasc);
+//        } catch (ParseException ex) {
+//            java.util.logging.Logger.getLogger(jDialogPaginaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        
+//        cliente.getEndereco().setRua(this.txtRua.getText());
+//        cliente.getEndereco().setBairro(this.txtBairro.getText());
+//        cliente.setEmail(this.txtEmail.getText());
+//
+        String email = txtEmail.getText();
         
-        Cliente cliente = new Cliente(); // Create a new instance of Cliente
-        Voos voo = null;
-
-        cliente.setNome(this.txtNome.getText());
-        cliente.setCpf(this.txtCPF.getText());
-        cliente.setTelefone(this.txtTelefone.getText());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        
-        Date dtNasc;
-        
-        try {
-            dtNasc = (Date) FuncoesUteis.strToDate(txtDtNasc);
-            Cliente cli = gerI.getGerenciadorDominio().inserirCliente(cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getTelefone(), cliente.getEndereco().getRua(), cliente.getEndereco().getCidade(), cliente.getEndereco().getBairro(), cliente.getEndereco().getEstado(), cliente.getSexo(), dtNasc);
-        } catch (ParseException ex) {
-            java.util.logging.Logger.getLogger(jDialogPaginaReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        cliente.getEndereco().setRua(this.txtRua.getText());
-        cliente.getEndereco().setBairro(this.txtBairro.getText());
-        cliente.setEmail(this.txtEmail.getText());
-
-
         String formaPagamento = this.comboFormaPagamento.getSelectedItem().toString();
         
-        Reserva reserva = gerI.getGerenciadorDominio().inserirReserva(formaPagamento, cliente, voo);
+        Voos voo = gerI.getGerCid().getVoo();
+        Reserva reserva = gerI.getGerenciadorDominio().inserirReserva(formaPagamento, email ,cliente, voo);
+        
+        gerI.getGerCid().setVoo(null);
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        txtBairro.setText("");
+        txtCEP.setText("");
+        txtCPF.setText("");
+        txtDtNasc.setText("");
+        txtEmail.setText("");
+        txtNome.setText("");
+        txtPesqCPF.setText("");
+        txtRua.setText("");
+        txtTelefone.setText("");
+
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     
 

@@ -8,21 +8,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
+import java.text.ParseException;
 
 @Entity
 public class Check_in implements Serializable{
     @Id
     @GeneratedValue ( strategy = GenerationType.IDENTITY)
     private int idCheck_in;
-    
-//    @Column(nullable = true)
-//    private int codVoo;
 
     @OneToOne(mappedBy = "check_in", fetch = FetchType.LAZY)
     private Reserva reserva;
 
-    public Check_in(int codVoo, Reserva reserva) {
-        //this.codVoo = codVoo;
+    public Check_in(Reserva reserva) {
         this.reserva = reserva;
     }
     
@@ -37,14 +34,6 @@ public class Check_in implements Serializable{
         this.idCheck_in = idCheck_in;
     }
 
-//    public int getCodVoo() {
-//        return codVoo;
-//    }
-//
-//    public void setCodVoo(int codVoo) {
-//        this.codVoo = codVoo;
-//    }
-
     public Reserva getReserva() {
         return reserva;
     }
@@ -53,4 +42,7 @@ public class Check_in implements Serializable{
         this.reserva = reserva;
     }
     
+    public Object[] toArray() throws ParseException {
+        return new Object[] { this, this.getIdCheck_in(), this.getReserva()};
+    }
 }

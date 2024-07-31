@@ -24,11 +24,11 @@ public class jFrmTelaInicial extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItemPesqVoos = new javax.swing.JMenuItem();
-        menuItemReservar = new javax.swing.JMenuItem();
         menuItemGerIti = new javax.swing.JMenuItem();
         menuItenCheck_in = new javax.swing.JMenuItem();
         menuItemCadCli = new javax.swing.JMenuItem();
         menuItemCadAviao = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         jMenu2.setText("File");
         jMenuBar2.add(jMenu2);
@@ -61,14 +61,6 @@ public class jFrmTelaInicial extends javax.swing.JFrame {
         });
         jMenu1.add(menuItemPesqVoos);
 
-        menuItemReservar.setText("Reservar");
-        menuItemReservar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemReservarActionPerformed(evt);
-            }
-        });
-        jMenu1.add(menuItemReservar);
-
         menuItemGerIti.setText("Gerenciar Itinerário");
         menuItemGerIti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,13 +85,21 @@ public class jFrmTelaInicial extends javax.swing.JFrame {
         });
         jMenu1.add(menuItemCadCli);
 
-        menuItemCadAviao.setText("Cadastrar Aviao");
+        menuItemCadAviao.setText("Cadastrar Empresa/Aviao");
         menuItemCadAviao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemCadAviaoActionPerformed(evt);
             }
         });
         jMenu1.add(menuItemCadAviao);
+
+        jMenuItem1.setText("Listar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
@@ -111,10 +111,6 @@ public class jFrmTelaInicial extends javax.swing.JFrame {
     private void menuItemPesqVoosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemPesqVoosActionPerformed
         gerI.abrirPesquisarVoos();
     }//GEN-LAST:event_menuItemPesqVoosActionPerformed
-
-    private void menuItemReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemReservarActionPerformed
-        gerI.abrirPaginaReservas();
-    }//GEN-LAST:event_menuItemReservarActionPerformed
 
     private void menuItemGerItiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerItiActionPerformed
         gerI.abrirJanelaInformacoes();
@@ -132,6 +128,10 @@ public class jFrmTelaInicial extends javax.swing.JFrame {
         gerI.abrirJanelaCadAviao();
     }//GEN-LAST:event_menuItemCadAviaoActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        gerI.abrirListar();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -141,11 +141,11 @@ public class jFrmTelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem menuItemCadAviao;
     private javax.swing.JMenuItem menuItemCadCli;
     private javax.swing.JMenuItem menuItemGerIti;
     private javax.swing.JMenuItem menuItemPesqVoos;
-    private javax.swing.JMenuItem menuItemReservar;
     private javax.swing.JMenuItem menuItenCheck_in;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,6 +2,7 @@ package windows;
 
 import control.GerenciaDeInterface;
 import domain.Cliente;
+import domain.Reserva;
 import domain.Voos;
 
 /*
@@ -363,7 +364,23 @@ public class jDialogInformacoesVoo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
+        //GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
+
+        txtAeronave.setText("");
+        txtBairro.setText("");
+        txtCEP.setText("");
+        txtCPF.setText("");
+        txtDestino.setText("");
+        txtEmpresa.setText("");
+        txtHorario.setText("");
+        txtModelAeronave.setText("");
+        txtNome.setText("");
+        txtOrigem.setText("");
+        txtRua.setText("");
+        txtTelefone.setText("");
+        txtValor.setText("");
+
+        this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void txtBairroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtBairroActionPerformed
@@ -383,10 +400,18 @@ public class jDialogInformacoesVoo extends javax.swing.JDialog {
         this.txtNome.setText(cliente.getNome());
         this.txtCPF.setText(cliente.getCpf());
         this.txtTelefone.setText(cliente.getTelefone());
-        // this.txtDtNasc.setText(cliente.getDtNasc().toString());
         this.txtRua.setText(cliente.getEndereco().getRua());
-        // this.txtEmail.setText(cliente.getEmail());
+        this.txtBairro.setText(cliente.getEndereco().getBairro());
 
+        cliente = gerI.getGerenciadorDominio().buscarCliente(cpf);
+
+        //cliente.getReserva().get(0).getVoo().getCidOrigem().toString();
+
+        this.txtOrigem.setText(cliente.getReserva().get(0).getVoo().getCidOrigem().toString());
+        this.txtDestino.setText(cliente.getReserva().get(0).getVoo().getCidDest().toString());
+        this.txtHorario.setText(cliente.getReserva().get(0).getVoo().getHorario().toString());
+        this.txtEmpresa.setText(cliente.getReserva().get(0).getVoo().getEmpresas().get(0).getNomeEmpresa());
+        this.txtModelAeronave.setText(cliente.getReserva().get(0).getVoo().getAviao().getModelAviao());
     }// GEN-LAST:event_btnPesqClienteActionPerformed
 
     private void btnPesqVooActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnPesqVooActionPerformed

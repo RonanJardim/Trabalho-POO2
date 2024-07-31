@@ -1,12 +1,12 @@
 package control;
 
 import domain.Cidade;
+import domain.Voos;
 
 public class GerenciaDeCidades {
-    Cidade cidOrigem = null;
-    Cidade cidDestino = null;
-
-    
+    private Cidade cidOrigem = null;
+    private Cidade cidDestino = null;
+    private Voos voo = null;
     
     public Cidade getCidOrigem() {
         return cidOrigem;
@@ -23,7 +23,13 @@ public class GerenciaDeCidades {
     public void setCidDestino(Cidade cidDestino) {
         this.cidDestino = cidDestino;
     }
-    
-    
+
+    public Voos getVoo() {
+        return voo;
+    }
+
+    public void setVoo(Voos voo) {
+        this.voo = voo;
+    }
     
 }

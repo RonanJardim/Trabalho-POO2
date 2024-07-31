@@ -1,5 +1,6 @@
 package domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -58,13 +59,22 @@ public class Endereco implements Serializable{
         this.clientes = clientes;
     }
     
-    @ManyToOne ( fetch = FetchType.EAGER )
-    @JoinColumn ( name="idEmpresa" )
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idEmpresa")
     private Empresa empresa;
     
     @OneToMany( fetch = FetchType.LAZY, mappedBy = "endereco" )
     private List<Cliente> clientes = new ArrayList();
     
+    public Endereco(String rua, int numero, String bairro, String cidade, String estado, Empresa empresa) {
+        this.rua = rua;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.empresa = empresa;
+    }
+
     public Endereco(String rua, int numero, String bairro, String cidade, String estado) {
         this.rua = rua;
         this.numero = numero;
@@ -72,7 +82,7 @@ public class Endereco implements Serializable{
         this.cidade = cidade;
         this.estado = estado;
     }
-
+    
     public Endereco() {
     }
     

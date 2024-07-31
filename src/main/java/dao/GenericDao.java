@@ -1,5 +1,7 @@
 package dao;
 
+import domain.Check_in;
+import domain.Reserva;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.util.ArrayList;
+import org.hibernate.query.Query;
 
 public class GenericDao {
 
@@ -179,5 +182,13 @@ public class GenericDao {
         }
         return objReturn;
     }
-
+    
+    public List<Reserva> listByCheckin(Check_in checkin) {
+        try (Session sessao = ConexaoHibernate.getSessionFactory().openSession()) {
+            String hql = "FROM Reserva WHERE check_in = :checkin";
+            Query<Reserva> query = sessao.createQuery(hql);
+            query.setParameter("checkin", checkin);
+            return query.list();
+        }
+    }
 }

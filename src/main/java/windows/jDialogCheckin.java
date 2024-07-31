@@ -1,7 +1,17 @@
 package windows;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import org.hibernate.annotations.Check;
+
+import control.FuncoesUteis;
 import control.GerenciaDeInterface;
+import domain.Check_in;
 import domain.Cliente;
+import domain.Reserva;
 
 public class jDialogCheckin extends javax.swing.JDialog {
 
@@ -29,6 +39,13 @@ public class jDialogCheckin extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         txtPesqCPF = new javax.swing.JFormattedTextField();
         btnPesqCliente = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        combReservas = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtorigem = new javax.swing.JTextField();
+        txtDestino = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -56,9 +73,9 @@ public class jDialogCheckin extends javax.swing.JDialog {
                         .addComponent(txtCPF))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtDtNasc)))
-                .addGap(0, 25, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDtNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,8 +96,18 @@ public class jDialogCheckin extends javax.swing.JDialog {
         );
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar Cliente"));
 
@@ -124,18 +151,76 @@ public class jDialogCheckin extends javax.swing.JDialog {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Reservas"));
+
+        jLabel4.setText("Selecionar Reserva");
+
+        combReservas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                combReservasMouseClicked(evt);
+            }
+        });
+
+        jLabel5.setText("Origem");
+
+        jLabel6.setText("Destino");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(combReservas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtDestino))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtorigem)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(combReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtorigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(0, 7, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCancelar)
                 .addGap(46, 46, 46)
                 .addComponent(btnConfirmar)
-                .addGap(89, 89, 89))
+                .addGap(90, 90, 90))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,12 +228,14 @@ public class jDialogCheckin extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnConfirmar))
-                .addGap(32, 32, 32))
+                .addContainerGap())
         );
 
         pack();
@@ -161,8 +248,9 @@ public class jDialogCheckin extends javax.swing.JDialog {
 
         String cpf = this.txtPesqCPF.getText();
 
-        cliente = gerI.getGerenciadorDominio().buscarCliente(cpf);
-        System.out.println(cliente.getEndereco().getCidade());
+        cliente = gerI.getGerenciadorDominio().pesquisarClienteReserva(cpf);
+        
+        gerI.carregarComboBox(combReservas, this, Reserva.class, cliente, "cliente");
 
         this.txtNome.setText(cliente.getNome());
         this.txtCPF.setText(cliente.getCpf());
@@ -171,20 +259,60 @@ public class jDialogCheckin extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnPesqClienteActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        txtCPF.setText("");
+        txtDtNasc.setText("");
+        txtNome.setText("");
+        txtPesqCPF.setText("");
+
+        dispose(); 
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void combReservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combReservasMouseClicked
+        
+        Reserva reserva = (Reserva) this.combReservas.getSelectedItem();
+        
+        this.txtorigem.setText(reserva.getVoo().getCidOrigem().getNomeCidade());
+        this.txtDestino.setText(reserva.getVoo().getCidDest().getNomeCidade());
+        
+    }//GEN-LAST:event_combReservasMouseClicked
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
+        
+//        Cliente cliente = gerI.getGerenciadorDominio().buscarCliente(this.txtPesqCPF.getText());
+//        List<Reserva> reservas = cliente.getReserva();
+        
+        
+//        int indice = combReservas.getSelectedIndex();
+//        
+//        Reserva reserva = reservas.get(indice);
+
+        Reserva reserva = (Reserva) this.combReservas.getSelectedItem();
+        gerI.getGerenciadorDominio().atualizarReserva(reserva);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnPesqCliente;
+    private javax.swing.JComboBox<String> combReservas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtCPF;
+    private javax.swing.JTextField txtDestino;
     private javax.swing.JTextField txtDtNasc;
     private javax.swing.JTextField txtNome;
     private javax.swing.JFormattedTextField txtPesqCPF;
+    private javax.swing.JTextField txtorigem;
     // End of variables declaration//GEN-END:variables
 }

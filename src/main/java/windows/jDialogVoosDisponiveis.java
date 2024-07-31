@@ -1,11 +1,14 @@
 package windows;
 
-import control.GerenciaDeInterface;
-import domain.Cidade;
+import javax.swing.text.Caret;
 
+import control.GerenciaDeInterface;
+import domain.Aviao;
+import domain.Cidade;
+import domain.Empresa;
+import domain.Voos;
 
 public class jDialogVoosDisponiveis extends javax.swing.JDialog {
-
 
     public jDialogVoosDisponiveis(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -34,6 +37,8 @@ public class jDialogVoosDisponiveis extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         txtModelAeronave = new javax.swing.JTextField();
         comboHorario = new javax.swing.JComboBox<>();
+        jLabel88 = new javax.swing.JLabel();
+        txtDtVoo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         txtOrigem = new javax.swing.JLabel();
         txtDestino = new javax.swing.JLabel();
@@ -65,6 +70,14 @@ public class jDialogVoosDisponiveis extends javax.swing.JDialog {
 
         comboHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel88.setText("Data");
+
+        txtDtVoo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDtVooActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -72,15 +85,19 @@ public class jDialogVoosDisponiveis extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtValor)
-                    .addComponent(txtAeroporto)
-                    .addComponent(comboHorario, 0, 96, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel88)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtDtVoo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(39, 39, 39)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel10)
@@ -89,7 +106,11 @@ public class jDialogVoosDisponiveis extends javax.swing.JDialog {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
-                        .addComponent(txtModelAeronave, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtModelAeronave, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtAeroporto)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -108,9 +129,13 @@ public class jDialogVoosDisponiveis extends javax.swing.JDialog {
                     .addComponent(txtModelAeronave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtAeroporto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(txtAeroporto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel88)
+                        .addComponent(txtDtVoo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -157,6 +182,11 @@ public class jDialogVoosDisponiveis extends javax.swing.JDialog {
         });
 
         btnReserva.setText("Reservar");
+        btnReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,7 +241,7 @@ public class jDialogVoosDisponiveis extends javax.swing.JDialog {
         txtDestino.setText("");
         txtOrigem.setText("");
         comboHorario.setSelectedIndex(0);
-        
+
         gerI.getGerCid().setCidDestino(null);
         gerI.getGerCid().setCidOrigem(null);
         this.dispose();
@@ -221,11 +251,54 @@ public class jDialogVoosDisponiveis extends javax.swing.JDialog {
         GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
         Cidade cidOrigem = gerI.getGerCid().getCidOrigem();
         Cidade cidDestino = gerI.getGerCid().getCidDestino();
-        
+        Voos voo;
+        //Aviao aviao = null;
+
         this.textFieldOrigem.setText(cidOrigem.getNomeCidade());
         this.textFieldDestino.setText(cidDestino.getNomeCidade());
+
+        voo = gerI.getGerenciadorDominio().pesquisarVoos(0, cidOrigem.getNomeCidade(), cidDestino.getNomeCidade());
+
+        if (voo != null) {
+            this.txtValor.setText(String.valueOf(voo.getValor()));
+            this.txtAeroporto.setText(voo.getNomeAeroporto());
+            //this.txtDtVoo.setCaret((Caret) voo.getDtVoo());
+            
+            Aviao aviao = voo.getAviao();
+            
+            if (aviao != null) {
+                Empresa empresa = aviao.getEmpresa();
+                if (empresa != null) {
+                    this.txtEmpresa.setText(empresa.toString());
+                } else {
+                    this.txtEmpresa.setText("Empresa não disponível");
+                }
+                this.txtModelAeronave.setText(aviao.getModelAviao());
+            } else {
+                this.txtEmpresa.setText("Avião não disponível");
+                this.txtModelAeronave.setText("Modelo não disponível");
+            }
+            this.comboHorario.setSelectedItem(voo.getHorario());
+            gerI.getGerCid().setVoo(voo);
+        } else {
+            this.txtValor.setText("Valor não disponível");
+            this.txtAeroporto.setText("Aeroporto não disponível");
+            this.txtEmpresa.setText("Empresa não disponível");
+            this.txtModelAeronave.setText("Modelo não disponível");
+        }
+
     }//GEN-LAST:event_formWindowGainedFocus
- 
+
+    private void txtDtVooActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDtVooActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDtVooActionPerformed
+
+    private void btnReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservaActionPerformed
+        GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
+
+        gerI.abrirPaginaReservas();
+    }//GEN-LAST:event_btnReservaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReserva;
@@ -235,6 +308,7 @@ public class jDialogVoosDisponiveis extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -243,6 +317,7 @@ public class jDialogVoosDisponiveis extends javax.swing.JDialog {
     private javax.swing.JTextField textFieldOrigem;
     private javax.swing.JTextField txtAeroporto;
     private javax.swing.JLabel txtDestino;
+    private javax.swing.JTextField txtDtVoo;
     private javax.swing.JTextField txtEmpresa;
     private javax.swing.JTextField txtModelAeronave;
     private javax.swing.JLabel txtOrigem;

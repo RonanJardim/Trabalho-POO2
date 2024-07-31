@@ -7,13 +7,17 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import org.hibernate.HibernateException;
 import windows.jDialogVoosDisponiveis;
 import windows.jDialogCadAviao;
 import windows.jDialogCadCliente;
 import windows.jDialogCheckin;
 import windows.jDialogInformacoesVoo;
+import windows.jDialogListar;
 import windows.jDialogPaginaReserva;
 import windows.jDialogPesquisarVoos;
 import windows.jFrmTelaInicial;
@@ -27,6 +31,7 @@ public class GerenciaDeInterface {
     private jDialogPaginaReserva pagReserva = null;
     private jDialogPesquisarVoos pesqVoos = null;
     private jDialogVoosDisponiveis voosDisponiveis = null;
+    private jDialogListar listar = null;
 
     private static GerenciaDeInterface myInstance = new GerenciaDeInterface();
     private GerenciaDeDados gerDom;    // NÃO PODE ser static
@@ -97,6 +102,10 @@ public class GerenciaDeInterface {
     public void abrirVoosDisponiveis() {
         voosDisponiveis = (jDialogVoosDisponiveis) abrirJanela(frmTelaInicial, voosDisponiveis, jDialogVoosDisponiveis.class);
     }
+    
+    public void abrirListar(){
+        listar = (jDialogListar) abrirJanela(frmTelaInicial, listar, jDialogListar.class);
+    }
 
     public void fecharJanela(JDialog janela) {
         janela.dispose();
@@ -117,6 +126,40 @@ public class GerenciaDeInterface {
             combo.setModel(new DefaultComboBoxModel(lista.toArray()));
         } catch (HibernateException ex) {
             JOptionPane.showMessageDialog(janela, "Erro carregar Combo Box: " + ex);
+        }
+    }
+    
+//    public void carregarTabela(JTable tabela, JDialog janela, Class<?> classe){
+//        try{
+//            List<?> lista = (List<?>) this.gerDom.list(classe);
+//            ((DefaultTableModel) tabela.getModel()).setNumRows(0);            
+//            for (Object obj : lista){
+//                // ADICIONAR LINHA NA TABELA        
+//                ((DefaultTableModel)tabela.getModel()).addRow((Object[]) obj.getClass().getMethod("toArray").invoke(obj));                
+//            }
+//        }catch(HibernateException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex){
+//            JOptionPane.showMessageDialog(janela, "Erro carregar Tabela: "+ ex);
+//        }  
+//    }
+    
+    public void carregarTabela(JTable tabela, TableModel modelo) {
+        tabela.setModel(modelo);
+    }
+    
+    public void excluirTabela(JTable tabela, JDialog janela){
+        int linha = tabela.getSelectedRow();
+        if ( linha >= 0 ) {  
+            if ( JOptionPane.showConfirmDialog(janela, "Deseja realmente excluir?", "Título", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION ) {
+                try{
+                    this.gerDom.excluir(tabela.getValueAt(linha, 0));
+                    ((DefaultTableModel)tabela.getModel()).removeRow(linha);
+                    JOptionPane.showMessageDialog(janela, "excluído com sucesso.");
+                }catch(HibernateException ex){
+                    JOptionPane.showMessageDialog(janela, "Erro: Nao pode ser excluido");
+                }
+            }             
+        }else{
+            JOptionPane.showMessageDialog(janela,"Selecione uma linha." ,"Erro",JOptionPane.ERROR_MESSAGE);
         }
     }
 

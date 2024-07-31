@@ -35,14 +35,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemPesqVoosActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemReservar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Reservar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemReservarActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemGerIti">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gerenciar Itiner&#xe1;rio"/>
@@ -69,10 +61,18 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemCadAviao">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastrar Aviao"/>
+                <Property name="text" type="java.lang.String" value="Cadastrar Empresa/Aviao"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCadAviaoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

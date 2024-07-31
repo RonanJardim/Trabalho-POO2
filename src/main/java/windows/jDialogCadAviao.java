@@ -53,6 +53,11 @@ public class jDialogCadAviao extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -311,6 +316,21 @@ public class jDialogCadAviao extends javax.swing.JDialog {
     private void txtCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCidadeActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        txtBairro.setText("");
+        txtCNPJ.setText("");
+        txtCidade.setText("");
+        txtDtFundacao.setText("");
+        txtEmpresa.setText("");
+        txtEstado.setText("");
+        txtModelo.setText("");
+        txtNumAviao.setText("");
+        txtRua.setText("");
+        txtTelefone.setText("");
+        
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

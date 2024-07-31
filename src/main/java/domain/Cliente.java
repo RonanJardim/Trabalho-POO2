@@ -13,6 +13,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -139,7 +140,9 @@ public class Cliente implements Serializable{
         return "Cliente{" + "idCliente=" + idCliente + ", nome=" + nome + ", cpf=" + cpf + ", dtNasc=" + dtNasc + ", sexo=" + sexo + ", telefone=" + telefone + ", endereco=" + endereco + ", reserva=" + reserva + '}';
     }
 
-
+    public Object[] toArray() throws ParseException {
+        return new Object[] { this, this.getNome(), this.getSexo(), this.getCpf()};
+    }
 }
 
 

@@ -91,4 +91,10 @@ public class Reserva implements Serializable{
     public void setVoo(Voos voo) {
         this.voo = voo;
     }
+
+    @Override
+    public String toString() {
+        return formaPagamento;
+    }
+    
 }

@@ -61,6 +61,11 @@ public class jDialogCadCliente extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -273,6 +278,23 @@ public class jDialogCadCliente extends javax.swing.JDialog {
             Logger.getLogger(jDialogCadCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        txtBairro.setText("");
+        txtCPF.setText("");
+        txtCidade.setText("");
+        txtData.setText("");
+        txtDtNasc.setText("");
+        txtEmailCli.setText("");
+        txtEstado.setText("");
+        txtNomeCli.setText("");
+        txtRua.setText("");
+        txtTelefone.setText("");
+        buttonSexo.clearSelection();
+        
+        dispose();
+
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
