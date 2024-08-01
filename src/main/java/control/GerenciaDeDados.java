@@ -181,12 +181,27 @@ public class GerenciaDeDados {
         }
     }
     
-    public void atualizarCliente(Cliente cliente) {
+    public int atualizarCliente(Cliente cliente, String nome, Date data, String numero, String estado, String cidade) {
+        Endereco endereco = cliente.getEndereco();
+        endereco.setEstado(estado);
+        endereco.setCidade(cidade);
+        genDao.alterar(endereco);
+        
+        cliente.setNome(nome);
+        cliente.setDtNasc(data);
+        cliente.setTelefone(numero);
         genDao.alterar(cliente);
+        
+        return cliente.getIdCliente();
     }
 
-    public void atualizarEmpresa(Empresa empresa) {
-        genDao.alterar(empresa);
+    public int atualizarEmpresa(Empresa empresa, String nome, String cnpj, String numero) {
+        empresa.setNomeEmpresa(nome);
+        empresa.setCnpj(cnpj);
+        empresa.setTelefone(numero);
+        this.genDao.alterar(empresa);
+        
+        return empresa.getIdEmpresa();
     }
 
     public void atualizarCheck_in(Check_in checkin) {

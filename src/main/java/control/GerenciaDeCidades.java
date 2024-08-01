@@ -1,12 +1,14 @@
 package control;
 
 import domain.Cidade;
+import domain.Cliente;
 import domain.Voos;
 
 public class GerenciaDeCidades {
     private Cidade cidOrigem = null;
     private Cidade cidDestino = null;
     private Voos voo = null;
+    private Cliente cliente = null;
     
     public Cidade getCidOrigem() {
         return cidOrigem;
@@ -32,4 +34,11 @@ public class GerenciaDeCidades {
         this.voo = voo;
     }
     
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

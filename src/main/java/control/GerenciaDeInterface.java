@@ -12,6 +12,8 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import org.hibernate.HibernateException;
+
+import domain.Cliente;
 import windows.jDialogVoosDisponiveis;
 import windows.jDialogCadAviao;
 import windows.jDialogCadCliente;
@@ -129,18 +131,18 @@ public class GerenciaDeInterface {
         }
     }
     
-//    public void carregarTabela(JTable tabela, JDialog janela, Class<?> classe){
-//        try{
-//            List<?> lista = (List<?>) this.gerDom.list(classe);
-//            ((DefaultTableModel) tabela.getModel()).setNumRows(0);            
-//            for (Object obj : lista){
-//                // ADICIONAR LINHA NA TABELA        
-//                ((DefaultTableModel)tabela.getModel()).addRow((Object[]) obj.getClass().getMethod("toArray").invoke(obj));                
-//            }
-//        }catch(HibernateException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex){
-//            JOptionPane.showMessageDialog(janela, "Erro carregar Tabela: "+ ex);
-//        }  
-//    }
+    public void carregarTabela(JTable tabela, JDialog janela, Class<?> classe){
+        try{
+            List<?> lista = (List<?>) this.gerDom.list(classe);
+            ((DefaultTableModel) tabela.getModel()).setNumRows(0);            
+            for (Object obj : lista){
+                // ADICIONAR LINHA NA TABELA        
+                ((DefaultTableModel)tabela.getModel()).addRow((Object[]) obj.getClass().getMethod("toArray").invoke(obj));                
+            }
+        }catch(HibernateException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex){
+            JOptionPane.showMessageDialog(janela, "Erro carregar Tabela: "+ ex);
+        }  
+    }
     
     public void carregarTabela(JTable tabela, TableModel modelo) {
         tabela.setModel(modelo);

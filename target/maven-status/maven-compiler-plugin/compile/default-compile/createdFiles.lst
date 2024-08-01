@@ -13,6 +13,7 @@ windows\jDialogPaginaReserva$1.class
 domain\Endereco.class
 windows\jDialogPesquisarVoos.class
 windows\jFrmTelaInicial$1.class
+windows\jDialogListar$6.class
 domain\Check_in.class
 domain\Empresa.class
 windows\jDialogCadAviao$2.class

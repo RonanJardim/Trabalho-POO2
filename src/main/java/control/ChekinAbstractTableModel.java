@@ -16,12 +16,12 @@ public class ChekinAbstractTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 2;
+        return 1;
     }
 
     @Override
     public String getColumnName(int column) {
-        String nomesColunas[] = { "ID", "Reserva" };
+        String nomesColunas[] = { "Reserva" };
         return nomesColunas[column];
     }
 
@@ -30,8 +30,6 @@ public class ChekinAbstractTableModel extends AbstractTableModel {
         Check_in item = listaItens.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return item.getIdCheck_in();
-            case 1:
                 return item.getReserva();
             default:
                 throw new IllegalArgumentException("Invalid column index: " + columnIndex);
@@ -63,4 +61,11 @@ public class ChekinAbstractTableModel extends AbstractTableModel {
             fireTableDataChanged();
         }
     }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false; 
+    }
+    
+    
 }

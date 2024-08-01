@@ -16,12 +16,12 @@ public class EmpresaAbstractTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 3;
     }
 
     @Override
     public String getColumnName(int column) {
-        String nomesColunas[] = { "ID", "Nome", "CNPJ", "Telefone" };
+        String nomesColunas[] = { "Nome", "CNPJ", "Telefone" };
         return nomesColunas[column];
     }
 
@@ -30,12 +30,10 @@ public class EmpresaAbstractTableModel extends AbstractTableModel {
         Empresa empresa = listaEmpresas.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return empresa.getIdEmpresa();
-            case 1:
                 return empresa.getNomeEmpresa();
-            case 2:
+            case 1:
                 return empresa.getCnpj();
-            case 3:
+            case 2:
                 return empresa.getTelefone();
             default:
                 throw new IllegalArgumentException("Invalid column index: " + columnIndex);
@@ -66,5 +64,11 @@ public class EmpresaAbstractTableModel extends AbstractTableModel {
             listaEmpresas = novaLista;
             fireTableDataChanged();
         }
+    }
+    
+    
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false;
     }
 }

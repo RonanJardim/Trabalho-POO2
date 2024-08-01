@@ -77,4 +77,8 @@ public class ClienteAbstractTableModel extends AbstractTableModel {
             fireTableRowsInserted(0, listaItens.size() - 1);
         }
     }
+
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false;
+    }
 }
