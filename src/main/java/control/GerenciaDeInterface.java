@@ -38,10 +38,12 @@ public class GerenciaDeInterface {
     private static GerenciaDeInterface myInstance = new GerenciaDeInterface();
     private GerenciaDeDados gerDom;    // NÃO PODE ser static
     private GerenciaDeCidades gerCid;
+    private GerenciadordeRelatorios gerRel;
     
     private GerenciaDeInterface() {
         gerDom = new GerenciaDeDados();
         gerCid = new GerenciaDeCidades();
+        gerRel = new GerenciadordeRelatorios();
     }
 
     public static GerenciaDeInterface getInstance() {
@@ -54,6 +56,10 @@ public class GerenciaDeInterface {
 
     public GerenciaDeCidades getGerCid() {
         return gerCid;
+    }
+
+    public GerenciadordeRelatorios getGerRel() {
+        return gerRel;
     }
 
     private JDialog abrirJanela(java.awt.Frame parent, JDialog dlg, Class classe) {

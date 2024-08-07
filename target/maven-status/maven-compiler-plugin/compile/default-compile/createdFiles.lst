@@ -1,4 +1,5 @@
 domain\Voos.class
+windows\jDialogListar$8.class
 windows\jFrmTelaInicial$4.class
 domain\Aviao.class
 windows\jDialogCheckin.class
@@ -27,4 +28,5 @@ control\GerenciaDeDados.class
 dao\ConexaoHibernate.class
 windows\jFrmTelaInicial$3.class
 control\GerenciaDeInterface.class
+control\GerenciadordeRelatorios.class
 windows\jFrmTelaInicial$6.class

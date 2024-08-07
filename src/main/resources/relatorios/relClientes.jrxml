@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="98c46d39-c9af-4ce0-ba7e-2127d009b893">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cpf" class="java.lang.String">
+		<fieldDescription><![CDATA[cpf]]></fieldDescription>
+	</field>
+	<field name="dtNasc" class="java.util.Date">
+		<fieldDescription><![CDATA[dtNasc]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[email]]></fieldDescription>
+	</field>
+	<field name="endereco" class="domain.Endereco">
+		<fieldDescription><![CDATA[endereco]]></fieldDescription>
+	</field>
+	<field name="idCliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[idCliente]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<field name="reserva" class="java.util.List">
+		<fieldDescription><![CDATA[reserva]]></fieldDescription>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<fieldDescription><![CDATA[sexo]]></fieldDescription>
+	</field>
+	<field name="telefone" class="java.lang.String">
+		<fieldDescription><![CDATA[telefone]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="164" y="0" width="267" height="79" uuid="a583bb39-1ce4-4dba-98ec-35fa77748b78"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Voo Certo Linhas Aéreas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="22" height="20" uuid="9b455dac-3ec7-4d9e-b13e-916107e776ad"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="0" width="130" height="20" uuid="f63a0202-8690-463d-9e5b-08174b98768b"/>
+				<text><![CDATA[nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="152" y="0" width="52" height="20" uuid="427128cc-1bd5-4168-87d2-52cccc6a2917"/>
+				<text><![CDATA[dtNasc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="0" width="100" height="20" uuid="7a78bf7b-6e59-41e1-9771-52842f73e444"/>
+				<text><![CDATA[cpf]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="0" width="100" height="20" uuid="2038903c-ccc9-4ed1-9dd6-b11f8e68eee7"/>
+				<text><![CDATA[telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="404" y="0" width="27" height="20" uuid="c051f0d9-453d-4bf1-832b-6234355a6a3c"/>
+				<text><![CDATA[sexo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="0" width="124" height="20" uuid="4851e90e-34b8-4f5d-bc14-769636b6bcb8"/>
+				<text><![CDATA[endereco]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="22" height="20" uuid="423a17e1-f31e-4463-b02e-592c19e9b303"/>
+				<textFieldExpression><![CDATA[$F{idCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="22" y="0" width="130" height="20" uuid="e05a35ed-2fa4-4cab-9c9c-b434f955ba9c"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="152" y="0" width="52" height="20" uuid="b3e2ac00-bd35-4cc4-829f-f26b7da1d07f"/>
+				<textFieldExpression><![CDATA[$F{dtNasc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="204" y="0" width="100" height="20" uuid="3c83b6e8-43dc-4f36-8ac7-ee271133ea11"/>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="0" width="100" height="20" uuid="62fc55a0-37d0-406b-93bf-d1f3069ca78c"/>
+				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="0" width="27" height="20" uuid="db0eeacc-12c3-451f-8eb0-179902a34d24"/>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="0" width="124" height="20" uuid="df35e0c1-242b-4296-982b-52a4f21bb88b"/>
+				<textFieldExpression><![CDATA[""+$F{endereco}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

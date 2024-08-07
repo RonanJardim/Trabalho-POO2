@@ -11,7 +11,20 @@
         <maven.compiler.target>20</maven.compiler.target>
         <exec.mainClass>Trabalho_POO2</exec.mainClass>
     </properties>
-    
+    <repositories>
+        <repository>
+            <id>jaspersoft-third-party</id>
+            <url>https://jaspersoft.jfrog.io/artifactory/third-party-ce-artifacts/</url>
+        </repository>
+        <repository>
+            <id>jr-ce-releases</id>
+            <url>https://jaspersoft.jfrog.io/artifactory/jr-ce-releases/</url>
+        </repository>
+        <repository>
+            <id>jr-snapshots</id>
+            <url>https://jaspersoft.jfrog.io/artifactory/jr-ce-snapshots/</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -23,6 +36,16 @@
             <artifactId>hibernate-core</artifactId>
             <version>6.5.0.Final</version>
         </dependency>
-
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.7.1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7.js6</version>
+        </dependency>
     </dependencies>
 </project>

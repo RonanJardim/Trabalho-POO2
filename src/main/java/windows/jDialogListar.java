@@ -6,6 +6,7 @@ import control.ClienteAbstractTableModel;
 import control.EmpresaAbstractTableModel;
 import control.FuncoesUteis;
 import control.GerenciaDeDados;
+import control.GerenciadordeRelatorios;
 import domain.Check_in;
 import domain.Cliente;
 import domain.Empresa;
@@ -41,6 +42,7 @@ public class jDialogListar extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         comboTipoPesq = new javax.swing.JComboBox<>();
         btnPesquisar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -76,6 +78,13 @@ public class jDialogListar extends javax.swing.JDialog {
             }
         });
 
+        jButton3.setText("Relatórios");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -85,7 +94,9 @@ public class jDialogListar extends javax.swing.JDialog {
                 .addComponent(comboTipoPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnPesquisar)
-                .addGap(63, 63, 63))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addGap(16, 16, 16))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +104,8 @@ public class jDialogListar extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboTipoPesq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisar))
+                    .addComponent(btnPesquisar)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -301,6 +313,33 @@ public class jDialogListar extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        GerenciaDeInterface gerI = GerenciaDeInterface.getInstance();
+
+        String tipoPesq = comboTipoPesq.getSelectedItem().toString();
+
+        switch (tipoPesq) {
+            case "Clientes":
+                List<Cliente> clientes = gerI.getGerenciadorDominio().listaClientes(Cliente.class);
+                gerI.getGerRel().relComLista(clientes, "relClientes.jasper");
+                break;
+            case "Check-in":
+                List<Check_in> checkIns = gerI.getGerenciadorDominio().listaCheckin(Check_in.class);
+                
+                break;
+            case "Empresas":
+                List<Empresa> empresas = gerI.getGerenciadorDominio().listaEmpresas(Empresa.class);
+                gerI.getGerRel().relComLista(empresas, "relEmpresas.jasper");
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Tipo de pesquisa desconhecido.", "Erro",
+                        JOptionPane.ERROR_MESSAGE);
+                break;
+        }
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void comboTipoPesqActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_comboTipoPesqActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_comboTipoPesqActionPerformed
@@ -442,6 +481,7 @@ public class jDialogListar extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> comboTipoPesq;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
